@@ -12,13 +12,20 @@ app.renderer.autoResize = true;
 app.renderer.resize(window.innerWidth, window.innerHeight);
 document.body.appendChild(app.view);
 PIXI.loader.add("images/Cat_test.png").load(setup);
+var sprite;
 function setup(){
-    let rect =  new PIXI.Rectangle(0,0,50,50);
-    let texture = PIXI.loader.resources["images/Cat_test.png"].texture;
+    var rect =  new PIXI.Rectangle(0,0,50,50);
+    var texture = PIXI.loader.resources["images/Cat_test.png"].texture;
     texture.frame = rect;
-    let sprite = new PIXI.Sprite(texture);
+    sprite = new PIXI.Sprite(texture);
 
-    sprite.scale.set(2,2);
+    var idle = setInterval(function(){
+        if (rect.x >= 64 * 4) rect.x = 0;
+        sprite.texture.frame = rect;
+        rect.x += 64;
+    }, 500);
+
+    // sprite.scale.set(2,2);
     app.stage.addChild(sprite);
 
 
