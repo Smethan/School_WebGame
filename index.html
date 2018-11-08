@@ -7,66 +7,6 @@
 <style>* {padding: 0; margin: 0}</style>
 <script src="pixi/pixi.min.js"></script>
 <body>
-    <script type="text/javascript">
-        let type = "WebGL";
-        if(!PIXI.utils.isWebGLSupported()){
-            type = "canvas"
-        }
-        PIXI.utils.sayHello(type);
-        let app = new PIXI.Application({width: 256, height: 256, antialias: true, transparent: false, resolution: 1});
-        app.stage.interactive = true;
-        app.renderer.backgroundColor = 0x061639;
-        app.renderer.view.style.position = "absolute";
-        app.renderer.view.style.display = "block";
-        app.renderer.autoResize = true;
-        app.renderer.resize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(app.view);
-        let bigRect = new PIXI.Graphics();
-
-        bigRect.beginFill(0x00ff00);
-
-        bigRect.drawRect(0,0,50,50);
-        // bigRect.moveTo(app.screen.width / 2, app.screen.height / 2);
-        // bigRect.pivot.set(app.screen.width / 2, app.screen.height / 2);
-        // bigRect.position.x = app.screen.width / 2;
-        // bigRect.position.y = app.screen.height / 2;
-        bigRect.interactive = true;
-        bigRect.buttonMode = true;
-        bigRect
-            .on('pointerdown', pdown)
-            .on('pointerup', pup)
-            .on('pointerupoutside', pup)
-            .on('pointermove', pdrag);
-        function pdown(event){
-            this.data = event.data;
-            this.alpha = 0.5;
-            this.dragging = true;
-        }
-
-        function pup(event){
-            this.alpha = 1;
-            this.dragging = false;
-            this.data = null;
-        }
-
-        function pdrag(event){
-            if (this.dragging){
-                var newposition = this.data.getLocalPosition(this.parent);
-                this.x = newposition.x - 25;
-                this.y = newposition.y - 25;
-            }
-        }
-        bigRect.hitArea = bigRect.getBounds();
-        // let mouse = app.renderer.plugins.interaction.mouse.global;
-        // bigRect.position.x = mouse.x;
-        // bigRect.position.y = mouse.y;
-        app.stage.addChild(bigRect);
-        // app.ticker.add(function(Delta){
-        //     bigRect.rotation += 0.1 * Delta;
-        //
-        // });
-
-
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>
