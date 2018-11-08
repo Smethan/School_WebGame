@@ -25,12 +25,17 @@ function setup(){
         rect.x += 64;
     }, 500);
 
-    sprite.vx = 10
+    sprite.vx = 10;
+    sprite.vy = 10;
     // sprite.scale.set(2,2);
     app.stage.addChild(sprite);
     window.addEventListener("keydown", function(event){
         event.preventDefault();
-        sprite.x += sprite.vx
+        if (event.keyCode == 37) {sprite.x -= sprite.vx}
+        if (event.keyCode == 38) {sprite.y -= sprite.vy}
+        if (event.keyCode == 39) {sprite.x += sprite.vx}
+        if (event.keyCode == 40) {sprite.y += sprite.vy}
+
     })
 
 
