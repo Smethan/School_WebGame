@@ -25,8 +25,13 @@ function setup(){
         rect.x += 64;
     }, 500);
 
+    sprite.vx = 10
     // sprite.scale.set(2,2);
     app.stage.addChild(sprite);
+    window.addEventListener("keydown", function(event){
+        event.preventDefault();
+        sprite.x += sprite.vx
+    })
 
 
 }
