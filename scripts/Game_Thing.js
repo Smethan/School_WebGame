@@ -45,6 +45,8 @@ function create() {
     platforms.create(400, 450, 'platform');
     makePlatform(0, 200, 50,40, platforms);
     makePlatform(470,400,250,90,platforms);
+    platform1 = makePlatform(0,450,200,25);
+    platforms.add(platform1);
 
     platforms.setAll('body.immovable', true);
 
@@ -53,14 +55,18 @@ function create() {
     jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.UP);
 
 }
-function makePlatform(x, y, width, height, group){
-    var platform = this.game.add.sprite(x,y, 'platform');
+function makePlatform(x, y, width, height, group, spriteName = 'platform'){
+    var platform = this.game.add.sprite(x,y, spriteName);
     platform.width = width;
     platform.height = height;
     this.game.physics.arcade.enable(platform);
     platform.body.immovable = true;
     platform.body.enable = true;
-    group.add(platform);
+    if(group !== undefined) {
+        group.add(platform);
+    } else {
+        return platform;
+    }
 
 
 }
@@ -70,6 +76,7 @@ function update () {
 
     game.physics.arcade.collide(player, platforms);
     platform2.body.velocity.x = -100;
+    platform1.body.velocity.x = -50;
 
     player.body.velocity.x = 0;
     jumpButton.onDown.add(function(){
